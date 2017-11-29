@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="Stylesheet.css"/>
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+
+        function makeNumber(maxRandom) {
+            randomNumber = Math.floor(Math.random() * (maxRandom - 1)) + 1;
+            return randomNumber;
+        }
+
+        let theNumber = makeNumber(11);
+        /*window.onload = function() {
+            document.getElementById("random").innerHTML = theNumber;
+            
+       }*/
+
+        var lives = 3;
+        
+        var tries = 0;
+        var wins = 0;
+
+        //var current = False;
+
+        function buttonClick(n) {
+            if (theNumber === n) {
+                window.alert("Thats right! Do you want to play again?");
+                restart();
+                tries = tries + 1;
+                wins = wins + 1;
+                document.getElementById("tries").innerHTML = tries;
+                document.getElementById("wins").innerHTML = wins;
+            }
+            else {
+                lives = lives - 1;
+                document.getElementById("currentLives").innerHTML = lives;
+                setTimeout(onFail(), 100);
+            }
+        }
+
+
+
+        function onFail() {
+            if (lives <= 0) {
+                setTimeout(window.confirm("You lost! Do you want to play again?"), 200);
+                if (result = true) {
+                    restart()
+                    tries = tries + 1;
+                    document.getElementById("tries").innerHTML = tries;
+                }
+            }
+        }
+
+        function restart() {
+            //make sure that all the variables are at their original values and that the lives text is correct. (IDEA : add a tries counter to tracck users attempts.)
+            lives = 3;
+            document.getElementById("currentLives").innerHTML = lives;
+            theNumber = makeNumber(11);
+            //document.getElementById("random").innerHTML = theNumber;
+            }
+
+        /*function hideButton(){
+            if(current = False){
+                current = True;
+                document.getElementById("debugTxt").hide();
+            }else if(current = True){
+                current = False;
+                document.getElementById("debugTxt").hide();
+            }
+        }*/
+
+    </script>
+    <p id="title">Guess my number!</p>
+    <p id="liveTxt">You have
+        <span id="currentLives">3</span> lives.</p>
+    <div id="buttons">
+        <button class="buttonG" onclick="buttonClick(1)">1</button>
+        <button class="buttonG" onclick="buttonClick(2)">2</button>
+        <button class="buttonG" onclick="buttonClick(3)">3</button>
+        <button class="buttonG" onclick="buttonClick(4)">4</button>
+        <button class="buttonG" onclick="buttonClick(5)">5</button>
+        <button class="buttonG" onclick="buttonClick(6)">6</button>
+        <button class="buttonG" onclick="buttonClick(7)">7</button>
+        <button class="buttonG" onclick="buttonClick(8)">8</button>
+        <button class="buttonG" onclick="buttonClick(9)">9</button>
+        <button class="buttonG" onclick="buttonClick(10)">10</button>
+    </div></br></br>
+    <div>
+        <div id="tryDiv">Tries: <span id="tries">0</span></div>
+        <div id="winDiv">Wins: <span id="wins">0</span></div>
+    </div>
+
+    <!--<button onclick="hideButton()">DEBUG</button>--><!--<p id="debugTxt">DEBUG: The random number is 
+        <span id="random">
+            x
+        </span> 
+    </p>-->
+
+</body>
+
+
+
+
+</html>
